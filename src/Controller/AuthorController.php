@@ -15,7 +15,7 @@ class AuthorController extends AbstractController
     #[Route('/admin/auteurs/nouveau', name: 'app_author_createAuthor')]
     public function createAuthor(Request $request, AuthorRepository $repository): Response
     {
-        if (!$request->getMethod("POST")) {
+        if (!$request->isMethod("POST")) {
             return $this->render('author/createAuthor.html.twig');
         }
 
@@ -44,5 +44,41 @@ class AuthorController extends AbstractController
                 "authors" => $authors
             ]
         );
+    }
+
+    #[Route("admin/auteurs/{id}", name: "app_author_updateAuthor")]
+    public function updateAuthor(Request $request, AuthorRepository $repository, int $id): Response
+    {
+        $author = $repository->find($id);
+
+        if ($request->isMethod("POST")) {
+
+            $name = $request->request->get("name");
+            $description = $request->request->get("description");
+            $imageUrl = $request->request->get("imageUrl");
+
+            $author->setName($name);
+            $author->setDescription($description);
+            $author->setImageUrl($imageUrl);
+
+            $repository->add($author, true);
+
+            return $this->redirectToRoute("app_author_list");
+        }
+
+        return $this->render("author/updateAuthor.html.twig", [
+            "id" => $id,
+            "author" => $author
+        ]);
+    }
+
+    #[Route("admin/supprimer/{id}", name: "app_author_deleteAuthor")]
+    public function deleteAuthor(Request $request, AuthorRepository $repository, int $id): Response
+    {
+        $author = $repository->find($id);
+
+        $repository->remove($author, true);
+
+        return $this->redirectToRoute("app_author_list");
     }
 }

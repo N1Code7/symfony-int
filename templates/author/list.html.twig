@@ -13,6 +13,9 @@
           <h3>{{author.name}}</h3>
           <p>{{author.description}}</p>
           <img src="{{author.imageUrl}}" alt="Image de {{author.name}}">
+          <a href={{path("app_author_updateAuthor", {"id": author.id})}}>Mettre à jour</a>
+          <a href={{path("app_author_deleteAuthor", {"id": author.id})}}>Supprimer l'auteur</a>
+
         </div>
       {% endfor %}
     
