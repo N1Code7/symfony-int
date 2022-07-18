@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des auteurs{% endblock %}
+
+{% block body %}
+
+  <main>
+
+    <a href="{{path("app_category_createCategory")}}">Créer une nouvelle catégorie</a>
+  
+    <div class="list-container">
+    <ul class="list-container">
+      {% for category in categories %}
+        <li>{{category.name}}
+          <a href={{path("app_category_updateCategory", {"id": category.id})}}>Modifier</a>
+          <a href={{path("app_category_deleteCategory", {"id": category.id})}}>Supprimer la catégorie</a>
+        </li>
+      {% endfor %}
+    </ul>    
+    </div>
+  
+  </main>
+
+{% endblock %}

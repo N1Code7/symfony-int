@@ -9,10 +9,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-// #[Route("/")]
+#[Route("/admin/auteurs")]
 class AuthorController extends AbstractController
 {
-    #[Route('/admin/auteurs/nouveau', name: 'app_author_createAuthor')]
+    #[Route("/nouveau", name: 'app_author_createAuthor')]
     public function createAuthor(Request $request, AuthorRepository $repository): Response
     {
         if (!$request->isMethod("POST")) {
@@ -33,7 +33,7 @@ class AuthorController extends AbstractController
         return $this->redirectToRoute("app_author_list");
     }
 
-    #[Route("/admin/auteurs", name: "app_author_list")]
+    #[Route("/liste", name: "app_author_list")]
     public function list(Request $request, AuthorRepository $repository): Response
     {
         $authors = $repository->findAll();
@@ -46,7 +46,7 @@ class AuthorController extends AbstractController
         );
     }
 
-    #[Route("admin/auteurs/{id}", name: "app_author_updateAuthor")]
+    #[Route("/modifier/{id}", name: "app_author_updateAuthor")]
     public function updateAuthor(Request $request, AuthorRepository $repository, int $id): Response
     {
         $author = $repository->find($id);
@@ -72,8 +72,8 @@ class AuthorController extends AbstractController
         ]);
     }
 
-    #[Route("admin/supprimer/{id}", name: "app_author_deleteAuthor")]
-    public function deleteAuthor(Request $request, AuthorRepository $repository, int $id): Response
+    #[Route("/supprimer/{id}", name: "app_author_deleteAuthor")]
+    public function deleteAuthor(AuthorRepository $repository, int $id): Response
     {
         $author = $repository->find($id);
 
