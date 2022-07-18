@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des auteurs{% endblock %}
+
+{% block body %}
+
+  <main>
+  
+    <div class="cards-container">
+
+      {% for author in authors %}
+        <div class="card">
+          <h3>{{author.name}}</h3>
+          <p>{{author.description}}</p>
+          <img src="{{author.imageUrl}}" alt="Image de {{author.name}}">
+        </div>
+      {% endfor %}
+    
+    </div>
+  
+  </main>
+
+{% endblock %}
