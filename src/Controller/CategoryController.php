@@ -15,6 +15,9 @@ class CategoryController extends AbstractController
     #[Route('/nouvelle', name: 'app_category_createCategory')]
     public function createCategory(Request $request, CategoryRepository $repository): Response
     {
+
+
+
         if (!$request->isMethod("POST")) {
             return $this->render('category/createCategory.html.twig');
         }
