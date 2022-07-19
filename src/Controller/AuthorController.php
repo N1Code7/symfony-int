@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Author;
+use App\Form\AdminAuthorType;
 use App\Repository\AuthorRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,26 +16,43 @@ class AuthorController extends AbstractController
     #[Route("/nouveau", name: 'app_author_createAuthor')]
     public function createAuthor(Request $request, AuthorRepository $repository): Response
     {
-        if (!$request->isMethod("POST")) {
-            return $this->render('author/createAuthor.html.twig');
-        }
-
-        $name = $request->request->get("name");
-        $description = $request->request->get("description");
-        $imageUrl = $request->request->get("imageUrl");
-
         $author = new Author();
-        $author->setName($name);
-        $author->setDescription($description);
-        $author->setImageUrl($imageUrl);
 
-        $repository->add($author, true);
+        $form = $this->createForm(AdminAuthorType::class, $author);
 
-        return $this->redirectToRoute("app_author_list");
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $author = $form->getData();
+
+            $repository->add($author, true);
+
+            return $this->redirectToRoute("app_author_list");
+        }
+        return $this->render("author/createAuthor.html.twig", [
+            "form" => $form->createView()
+        ]);
+
+        // if (!$request->isMethod("POST")) {
+        //     return $this->render('author/createAuthor.html.twig');
+        // }
+
+        // $name = $request->request->get("name");
+        // $description = $request->request->get("description");
+        // $imageUrl = $request->request->get("imageUrl");
+
+        // $author = new Author();
+        // $author->setName($name);
+        // $author->setDescription($description);
+        // $author->setImageUrl($imageUrl);
+
+        // $repository->add($author, true);
+
+        // return $this->redirectToRoute("app_author_list");
     }
 
     #[Route("/liste", name: "app_author_list")]
-    public function list(Request $request, AuthorRepository $repository): Response
+    public function list(AuthorRepository $repository): Response
     {
         $authors = $repository->findAll();
 
@@ -51,25 +69,41 @@ class AuthorController extends AbstractController
     {
         $author = $repository->find($id);
 
-        if ($request->isMethod("POST")) {
+        $form = $this->createForm(AdminAuthorType::class, $author);
 
-            $name = $request->request->get("name");
-            $description = $request->request->get("description");
-            $imageUrl = $request->request->get("imageUrl");
+        $form->handleRequest($request);
 
-            $author->setName($name);
-            $author->setDescription($description);
-            $author->setImageUrl($imageUrl);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $author = $form->getData();
 
             $repository->add($author, true);
 
             return $this->redirectToRoute("app_author_list");
         }
-
-        return $this->render("author/updateAuthor.html.twig", [
-            "id" => $id,
-            "author" => $author
+        return $this->render("author/createAuthor.html.twig", [
+            "form" => $form->createView()
         ]);
+
+
+        // if ($request->isMethod("POST")) {
+
+        //     $name = $request->request->get("name");
+        //     $description = $request->request->get("description");
+        //     $imageUrl = $request->request->get("imageUrl");
+
+        //     $author->setName($name);
+        //     $author->setDescription($description);
+        //     $author->setImageUrl($imageUrl);
+
+        //     $repository->add($author, true);
+
+        //     return $this->redirectToRoute("app_author_list");
+        // }
+
+        // return $this->render("author/updateAuthor.html.twig", [
+        //     "id" => $id,
+        //     "author" => $author
+        // ]);
     }
 
     #[Route("/supprimer/{id}", name: "app_author_deleteAuthor")]
