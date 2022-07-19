@@ -4,8 +4,10 @@ namespace App\Form;
 
 use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class AdminCategoryFormType extends AbstractType
 {
@@ -15,7 +17,10 @@ class AdminCategoryFormType extends AbstractType
             ->add('name', TextType::class, [
                 "label" => "Nom :",
                 "required" => true
-            ]);;
+            ])
+            ->add("submit", SubmitType::class, [
+                "label" => "Valider"
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
