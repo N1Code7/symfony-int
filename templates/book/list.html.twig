@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des livres{% endblock %}
+
+{% block body %}
+
+  <main>
+  
+    <div class="cards-container">
+
+      {% for book in books %}
+        <div class="card">
+          <h3>{{book.title}}</h3>
+          <p>{{book.price}}</p>
+          <p>{{book.description}}</p>
+          <img src="{{book.imageUrl}}" alt="Image du livre {{book.title}}">
+          <p>{{book.author.name}}</p>
+
+          {% for category in book.categories %}
+            <p>{{category.name}}</p>
+          {% endfor %}
+
+          <a href={{path("app_book_updateBook", {"id": book.id})}}>Mettre à jour</a>
+          <a href={{path("app_book_deleteBook", {"id": book.id})}}>Supprimer l'auteur</a>
+
+        </div>
+      {% endfor %}
+    
+    </div>
+  
+  </main>
+
+{% endblock %}

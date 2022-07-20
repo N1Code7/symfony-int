@@ -16,9 +16,7 @@ class CategoryController extends AbstractController
     #[Route('/nouvelle', name: 'app_category_createCategory')]
     public function createCategory(Request $request, CategoryRepository $repository): Response
     {
-        $category = new Category();
-
-        $form = $this->createForm(AdminCategoryFormType::class, $category);
+        $form = $this->createForm(AdminCategoryFormType::class);
 
         $form->handleRequest($request);
 

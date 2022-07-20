@@ -16,9 +16,7 @@ class AuthorController extends AbstractController
     #[Route("/nouveau", name: 'app_author_createAuthor')]
     public function createAuthor(Request $request, AuthorRepository $repository): Response
     {
-        $author = new Author();
-
-        $form = $this->createForm(AdminAuthorType::class, $author);
+        $form = $this->createForm(AdminAuthorType::class);
 
         $form->handleRequest($request);
 

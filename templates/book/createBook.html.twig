@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau livre{% endblock %}
+
+{% block body %}
+
+    <main>
+
+        {# <form method="POST">
+        
+            <label for="name">Nom :</label>
+            <input type="text" id="name" name="name">
+            <label for="description">Description :</label>
+            <textarea name="description" id="description" cols="30" rows="10"></textarea>
+            <label for="imageUrl">Photo de profil :</label>
+            <input type="text" id="imageUrl" name="imageUrl">
+            <input type="submit" value="Créer un nouvel auteur">
+        
+        </form> #}
+
+        {{form(form)}}
+
+    </main>
+
+{% endblock %}
