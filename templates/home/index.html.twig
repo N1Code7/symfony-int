@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des {{number}} livres{% endblock %}
+
+{% block body %}
+
+  <main>
+  
+    <div class="cards-container">
+
+      {% for book in books %}
+        <div class="card">
+          <h3>{{book.title}}</h3>
+          <p>{{book.price}} €</p>
+          <p>{{book.description}}</p>
+          <img src="{{book.imageUrl}}" alt="Image du livre {{book.title}}">
+          <p>{{book.author.name}}</p>
+
+          {% for category in book.categories %}
+            <p>{{category.name}}</p>
+          {% endfor %}
+
+        </div>
+      {% endfor %}
+    
+    </div>
+
+{% endblock %}
