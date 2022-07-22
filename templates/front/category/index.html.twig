@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Livres de la catégories {{category.0.name}}{% endblock %}
+
+{% block body %}
+
+    <h1>Livres de la catégories <em>{{category.0.name}}</em></h1>
+
+    <ul>
+
+        {% for book in books %}
+            <li><a href="#">{{book.title}}</a></li>
+        {% endfor %}
+    
+    </ul>
+
+{% endblock %}

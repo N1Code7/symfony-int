@@ -29,7 +29,7 @@ class BookController extends AbstractController
         }
 
         return $this->render(
-            "book/createBook.html.twig",
+            "admin/book/createBook.html.twig",
             [
                 "form" => $form->createView()
             ]
@@ -42,7 +42,7 @@ class BookController extends AbstractController
         $books = $repository->findAll();
 
         return $this->render(
-            "book/list.html.twig",
+            "admin/book/list.html.twig",
             [
                 "books" => $books,
             ]
@@ -66,7 +66,7 @@ class BookController extends AbstractController
             return $this->redirectToRoute("app_book_list");
         }
 
-        return $this->render("book/updateBook.html.twig", [
+        return $this->render("admin/book/updateBook.html.twig", [
             "form" => $form->createView(),
             "book" => $book
         ]);

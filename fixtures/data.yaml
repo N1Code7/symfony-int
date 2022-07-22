@@ -18,7 +18,7 @@ App\Entity\PublishingHouse:
 
 App\Entity\Book:
   book{1..50}:
-    title: <sentence(5)>
+    title: <fr_FR:catchPhrase()>
     price: <randomFloat(2, 5, 40)>
     description: <text(100)>
     imageUrl: <imageUrl(640, 480)>

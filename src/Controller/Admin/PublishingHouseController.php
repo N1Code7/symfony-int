@@ -27,7 +27,7 @@ class PublishingHouseController extends AbstractController
             return $this->redirectToRoute("app_publishing_house_list");
         }
 
-        return $this->render("publishing_house/createHouse.html.twig", [
+        return $this->render("admin/publishing_house/createHouse.html.twig", [
             "form" => $form->createView()
         ]);
     }
@@ -38,7 +38,7 @@ class PublishingHouseController extends AbstractController
         $houses = $repository->findAll();
 
         return $this->render(
-            "publishing_house/list.html.twig",
+            "admin/publishing_house/list.html.twig",
             [
                 "houses" => $houses
             ]
@@ -62,7 +62,7 @@ class PublishingHouseController extends AbstractController
             return $this->redirectToRoute("app_publishing_house_list");
         }
 
-        return $this->render("publishing_house/updateHouse.html.twig", [
+        return $this->render("admin/publishing_house/updateHouse.html.twig", [
             "form" => $form->createView(),
             "house" => $house
         ]);

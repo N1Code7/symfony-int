@@ -27,7 +27,7 @@ class AuthorController extends AbstractController
 
             return $this->redirectToRoute("app_author_list");
         }
-        return $this->render("author/createAuthor.html.twig", [
+        return $this->render("admin/author/createAuthor.html.twig", [
             "form" => $form->createView()
         ]);
 
@@ -55,7 +55,7 @@ class AuthorController extends AbstractController
         $authors = $repository->findAll();
 
         return $this->render(
-            "author/list.html.twig",
+            "admin/author/list.html.twig",
             [
                 "authors" => $authors
             ]
@@ -78,7 +78,7 @@ class AuthorController extends AbstractController
 
             return $this->redirectToRoute("app_author_list");
         }
-        return $this->render("author/createAuthor.html.twig", [
+        return $this->render("admin/author/createAuthor.html.twig", [
             "form" => $form->createView()
         ]);
 

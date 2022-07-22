@@ -28,7 +28,7 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute("app_category_list");
         }
 
-        return $this->render("category/createCategory.html.twig", [
+        return $this->render("admin/category/createCategory.html.twig", [
             "form" => $form->createView()
         ]);
 
@@ -53,7 +53,7 @@ class CategoryController extends AbstractController
         $categories = $repository->findAll();
 
         return $this->render(
-            "category/list.html.twig",
+            "admin/category/list.html.twig",
             [
                 "categories" => $categories,
             ]
@@ -77,7 +77,7 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute("app_category_list");
         }
 
-        return $this->render("category/updateCategory.html.twig", [
+        return $this->render("admin/category/updateCategory.html.twig", [
             "form" => $form->createView(),
             "category" => $category
         ]);

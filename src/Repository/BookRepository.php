@@ -48,6 +48,16 @@ class BookRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findAllBooksByCategoryId(int $id): array
+    {
+        return $this->createQueryBuilder("book")
+            ->leftJoin('book.categories', 'category')
+            ->andWhere('category.id = ' . $id)
+            ->orderBy("book.title", "DESC")
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Book[] Returns an array of Book objects
     //     */
