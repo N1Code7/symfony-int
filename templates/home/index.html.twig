@@ -10,15 +10,21 @@
 
       {% for book in books %}
         <div class="card">
-          <h3>{{book.title}}</h3>
-          <p>{{book.price}} €</p>
-          <p>{{book.description}}</p>
+          <h3>Titre : {{book.title}}</h3>
+          <p>Prix : {{book.price}} €</p>
+          <p>Descrpition : {{book.description}}</p>
           <img src="{{book.imageUrl}}" alt="Image du livre {{book.title}}">
-          <p>{{book.author.name}}</p>
-
+          <p>Auteur : {{book.author.name}}</p>
+          {% if book.categories|length == 1 %}
+          <p>Catégorie : {% for category in book.categories %}{{category.name}}{% endfor %}</p>
+          {% else %}
+            <ul>Catégories :
           {% for category in book.categories %}
-            <p>{{category.name}}</p>
+            <li>{{category.name}}</li>
           {% endfor %}
+
+            </ul>
+          {% endif %}
 
         </div>
       {% endfor %}

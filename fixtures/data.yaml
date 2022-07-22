@@ -1,1 +1,27 @@
-App\Entity\
+# fixtures / comment.yaml
+
+App\Entity\Category:
+  category{1..20}:
+    name: <words(2, true)>
+
+App\Entity\Author:
+  author{1..10}:
+    name: <name()>
+    description: <text(100)>
+    imageUrl: <imageUrl(640, 480)>
+
+App\Entity\PublishingHouse:
+  publishingHouse{1..10}:
+    name: <words(2, true)>
+    description: <text(50)>
+    country: <country()>
+
+App\Entity\Book:
+  book{1..50}:
+    title: <sentence(5)>
+    price: <randomFloat(2, 5, 40)>
+    description: <text(100)>
+    imageUrl: <imageUrl(640, 480)>
+    author: "@author*"
+    categories: ["@category*", "@category*"]
+    publishingHouse: "@publishingHouse*"
