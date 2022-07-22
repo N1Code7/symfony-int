@@ -16,11 +16,11 @@
           <img src="{{book.imageUrl}}" alt="Image du livre {{book.title}}">
           <p>Auteur : {{book.author.name}}</p>
           {% if book.categories|length == 1 %}
-          <p>Catégorie : {% for category in book.categories %}{{category.name}}{% endfor %}</p>
+          <p>Catégorie : {% for category in book.categories %}<a href="{{path("app_category_index", {id:category.id})}}">{{category.name}}</a>{% endfor %}</p>
           {% else %}
             <ul>Catégories :
           {% for category in book.categories %}
-            <li>{{category.name}}</li>
+            <li><a href="{{path("app_category_index", {id:category.id})}}">{{category.name}}</a></li>
           {% endfor %}
 
             </ul>
