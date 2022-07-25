@@ -12,15 +12,15 @@
         <div class="card">
           <h3>Titre : {{book.title}}</h3>
           <p>Prix : {{book.price}} €</p>
-          <p>Descrpition : {{book.description}}</p>
+          <p>Description : {{book.description}}</p>
           <img src="{{book.imageUrl}}" alt="Image du livre {{book.title}}">
           <p>Auteur : {{book.author.name}}</p>
           {% if book.categories|length == 1 %}
-          <p>Catégorie : {% for category in book.categories %}<a href="{{path("app_category_index", {id:category.id})}}">{{category.name}}</a>{% endfor %}</p>
+          <p>Catégorie : {% for category in book.categories %}<a href="{{path("app_category_showAllBooksOfOneCategory", {id:category.id})}}">{{category.name}}</a>{% endfor %}</p>
           {% else %}
             <ul>Catégories :
           {% for category in book.categories %}
-            <li><a href="{{path("app_category_index", {id:category.id})}}">{{category.name}}</a></li>
+            <li><a href="{{path("app_category_showAllBooksOfOneCategory", {id:category.id})}}">{{category.name}}</a></li>
           {% endfor %}
 
             </ul>

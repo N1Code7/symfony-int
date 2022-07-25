@@ -10,16 +10,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CategoryController extends AbstractController
 {
-    #[Route('/category/{id}', name: 'app_category_index')]
-    public function index(BookRepository $repository1, CategoryRepository $repository2, int $id): Response
+    #[Route('/categorie/{id}', name: 'app_category_showAllBooksOfOneCategory')]
+    public function showAllBooksOfOneCategory(BookRepository $repository1, CategoryRepository $repository2, int $id): Response
     {
         $books = $repository1->findAllBooksByCategoryId($id);
         $category = $repository2->findCategoryById($id);
-        // die(var_dump($category));
 
-        return $this->render('front/category/index.html.twig', [
+        return $this->render('front/category/showAllBooksOfOneCategory.html.twig', [
             'books' => $books,
             "category" => $category
         ]);
+    }
+
+    #[Route("/categories", name: "app_category_showAllCategories")]
+    public function showAllCategories(CategoryRepository $repository): Response
+    {
+        $categories = $repository->findAll();
+
+        return $this->render("front/category/showAllCategories.html.twig", ["categories" => $categories]);
     }
 }

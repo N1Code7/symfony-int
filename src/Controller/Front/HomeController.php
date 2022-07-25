@@ -10,12 +10,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-    #[Route('/home/{number}', name: 'app_home')]
-    public function index(BookRepository $repository, int $number): Response
+    #[Route('/home/{number}', name: 'app_home_displayNTHBooks')]
+    public function displayNTHBooks(BookRepository $repository, int $number): Response
     {
         $books = $repository->findLastNTH($number);
 
-        return $this->render('front/home/index.html.twig', [
+        return $this->render('front/home/displayNTHBooks.html.twig', [
             'books' => $books,
             "number" => $number
         ]);
