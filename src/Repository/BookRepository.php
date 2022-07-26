@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\DTO\SearchBookCriteria;
 use App\Entity\Book;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -39,11 +40,12 @@ class BookRepository extends ServiceEntityRepository
         }
     }
 
-    public function findLastNTH(int $number): array
+    public function findLastN(int $number): array
     {
         return $this->createQueryBuilder("book")
             ->orderBy("book.id", "DESC")
-            ->setMaxResults($number)
+            ->setMaxResults(":number")
+            ->setParameter("number", "%$number%")
             ->getQuery()
             ->getResult();
     }
@@ -52,8 +54,63 @@ class BookRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder("book")
             ->leftJoin('book.categories', 'category')
-            ->andWhere('category.id = ' . $id)
+            ->andWhere('category.id = :id')
+            ->setParameter('id', "%$id%")
             ->orderBy("book.title", "DESC")
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByCriteria(SearchBookCriteria $criteria): array
+    {
+        // Création du query builder
+        $qb = $this->createQueryBuilder('book');
+
+        // Filtre les résultat par titre si c'est spécifié
+        if ($criteria->title) {
+            $qb->andWhere('book.title LIKE :title')
+                ->setParameter('title', "%$criteria->title%");
+        }
+
+        // Filtre les résultat par auteurs
+        if (!empty($criteria->authors)) {
+            $qb->leftJoin('book.author', 'author')
+                ->andWhere('author.id IN (:authorIds)')
+                ->setParameter('authorIds', $criteria->authors);
+        }
+
+        // Filtre les résultat par catégories
+        if (!empty($criteria->categories)) {
+            $qb->leftJoin('book.categories', 'category')
+                ->andWhere('category.id IN (:categoryIds)')
+                ->setParameter('categoryIds', $criteria->categories);
+        }
+
+        // Filtre par prix minimum
+        if ($criteria->minPrice) {
+            $qb->andWhere('book.price >= :minPrice')
+                ->setParameter('minPrice', $criteria->minPrice);
+        }
+
+        // Filtre par prix maximum
+        if ($criteria->maxPrice) {
+            $qb->andWhere('book.price <= :maxPrice')
+                ->setParameter('maxPrice', $criteria->maxPrice);
+        }
+
+
+        // Filtre par maison d'édition
+        if (!empty($criteria->publishingHouses)) {
+            $qb
+                ->leftJoin('book.publishingHouse', 'publishingHouse')
+                ->andWhere('publishingHouse.id IN (:publishingHouses)')
+                ->setParameter('publishingHouses', $criteria->publishingHouses);
+        }
+
+        return $qb
+            ->orderBy("book.$criteria->orderBy", $criteria->direction)
+            ->setMaxResults($criteria->limit)
+            ->setFirstResult(($criteria->page - 1) * $criteria->limit)
             ->getQuery()
             ->getResult();
     }

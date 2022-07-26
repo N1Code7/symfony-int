@@ -2,8 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\DTO\SearchBookCriteria;
 use App\Entity\Book;
 use App\Form\AdminBookType;
+use App\Form\SearchBookType;
 use App\Repository\BookRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
