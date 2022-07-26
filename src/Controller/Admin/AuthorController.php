@@ -2,8 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\DTO\SearchAuthorCriteria;
 use App\Entity\Author;
 use App\Form\AdminAuthorType;
+use App\Form\SearchAuthorType;
 use App\Repository\AuthorRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,34 +32,24 @@ class AuthorController extends AbstractController
         return $this->render("admin/author/createAuthor.html.twig", [
             "form" => $form->createView()
         ]);
-
-        // if (!$request->isMethod("POST")) {
-        //     return $this->render('author/createAuthor.html.twig');
-        // }
-
-        // $name = $request->request->get("name");
-        // $description = $request->request->get("description");
-        // $imageUrl = $request->request->get("imageUrl");
-
-        // $author = new Author();
-        // $author->setName($name);
-        // $author->setDescription($description);
-        // $author->setImageUrl($imageUrl);
-
-        // $repository->add($author, true);
-
-        // return $this->redirectToRoute("app_author_list");
     }
 
     #[Route("/liste", name: "app_author_list")]
-    public function list(AuthorRepository $repository): Response
+    public function list(Request $request, AuthorRepository $repository): Response
     {
-        $authors = $repository->findAll();
+        $criteria = new SearchAuthorCriteria();
+
+        $form = $this->createForm(SearchAuthorType::class, $criteria);
+
+        $form->handleRequest($request);
+
+        $authors = $repository->findByCriteria($criteria);
 
         return $this->render(
             "admin/author/list.html.twig",
             [
-                "authors" => $authors
+                "authors" => $authors,
+                "form" => $form->createView()
             ]
         );
     }

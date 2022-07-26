@@ -1,12 +1,14 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Liste des auteurs{% endblock %}
+{% block title %}Liste des catégories{% endblock %}
 
 {% block body %}
 
   <main>
 
     <a href="{{path("app_category_createCategory")}}">Créer une nouvelle catégorie</a>
+
+    {{form(form)}}
   
     <div class="list-container">
     <ul class="list-container">

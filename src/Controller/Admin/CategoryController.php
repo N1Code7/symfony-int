@@ -2,8 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\DTO\SearchCategoryCriteria;
 use App\Entity\Category;
 use App\Form\AdminCategoryFormType;
+use App\Form\SearchCategoryType;
 use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,31 +33,26 @@ class CategoryController extends AbstractController
         return $this->render("admin/category/createCategory.html.twig", [
             "form" => $form->createView()
         ]);
-
-
-        // if (!$request->isMethod("POST")) {
-        //     return $this->render('category/createCategory.html.twig');
-        // }
-
-        // $name = $request->request->get("name");
-
-        // $category = new Category();
-        // $category->setName($name);
-
-        // $repository->add($category, true);
-
-        // return $this->redirectToRoute("app_category_list");
     }
 
     #[Route("/liste", name: "app_category_list")]
-    public function list(CategoryRepository $repository): Response
+    public function list(Request $request, CategoryRepository $repository): Response
     {
-        $categories = $repository->findAll();
+        // $categories = $repository->findAll();
+
+        $criteria = new SearchCategoryCriteria();
+
+        $form = $this->createForm(SearchCategoryType::class, $criteria);
+
+        $form->handleRequest($request);
+
+        $categories = $repository->findByCriteria($criteria);
 
         return $this->render(
             "admin/category/list.html.twig",
             [
                 "categories" => $categories,
+                "form" => $form->createView()
             ]
         );
     }

@@ -4,4 +4,26 @@
 
   {{form(form)}}
 
+  <div class="cards-container">
+      <div class="card">
+        {% for book in books %}
+            <h3>{{book.title}}</h3>
+            <p>{{book.description}}</p>
+            <ul>Auteur(s) :
+              {% for author in book.author %}
+                <li>{{author.name}}</li>
+              {% endfor %}
+            </ul>
+            <ul>Catégorie(s) :
+              {% for category in book.categories %}
+                <li>{{category.name}}</li>
+              {% endfor %}
+            </ul>
+            <p>{{book.publishingHouse}}</p>
+            <p>{{book.price}}</p>
+            <img src="{{book.imageUrl}}" alt="Image de {{book.title}}">
+          </div>
+        {% endfor %}   
+    </div>
+
 {% endblock %}

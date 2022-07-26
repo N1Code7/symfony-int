@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\DTO\SearchCategoryCriteria;
 use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -43,6 +44,23 @@ class CategoryRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder("category")
             ->where("category.id =" . $id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByCriteria(SearchCategoryCriteria $criteria): array
+    {
+        $qb = $this->createQueryBuilder("category");
+
+        if ($criteria->name) {
+            $qb->where("category.name LIKE :name")
+                ->setParameter("name", "%$criteria->name%");
+        }
+
+        return $qb
+            ->orderBy("category.$criteria->orderBy", $criteria->direction)
+            ->setMaxResults($criteria->limit)
+            ->setFirstResult(($criteria->page - 1) * $criteria->limit)
             ->getQuery()
             ->getResult();
     }
