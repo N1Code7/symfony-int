@@ -1,0 +1,151 @@
+@import url("https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:wght@400;500;600;700&display=swap");
+*,
+::before,
+::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Ibarra Real Nova", sans-serif;
+}
+
+html,
+button {
+  font-family: "Ibarra Real Nova", sans-serif;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70px;
+  min-width: 100vw;
+  background: rgb(214, 205, 205);
+  margin-bottom: 30px;
+}
+nav .nav-links-container {
+  display: flex;
+  gap: 20px;
+}
+nav .nav-links-container a {
+  text-decoration: none;
+  padding: 0.6rem;
+  background: rgb(59, 176, 100);
+  border-radius: 12px;
+  color: rgb(29, 29, 29);
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  min-width: 100vw;
+}
+form > div {
+  display: flex;
+  flex-direction: column;
+  min-width: 30%;
+  max-width: 80%;
+  background: rgb(214, 206, 206);
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+}
+form > div > div {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0;
+}
+form > div > div label {
+  margin-bottom: 3px;
+}
+form > div > div input,
+form > div > div select {
+  min-height: 30px;
+  text-align: center;
+}
+form > div > div textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+form > div > div:last-of-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form > div > div:last-of-type button,
+form > div > div:last-of-type input {
+  min-width: 100px;
+  min-height: 35px;
+  cursor: pointer;
+  background: linear-gradient(45deg, rgb(58, 176, 99) 0%, rgb(147, 203, 166) 25%, rgb(186, 227, 200) 50%, rgb(147, 203, 166) 75%, rgb(58, 176, 99) 100%);
+  border: none;
+  border-radius: 5px;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+.cards-container .card {
+  display: flex;
+  padding: 0.6rem 1.2rem;
+  margin: 20px;
+  background: rgb(189, 189, 185);
+  gap: 10px;
+  min-height: 320px;
+  border: 2px groove black;
+  border-radius: 10px;
+}
+.cards-container .card .left {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  max-width: 300px;
+}
+.cards-container .card .left h3 {
+  font-size: 1.5rem;
+}
+.cards-container .card .left .sub-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.cards-container .card .left .categories {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 8px;
+}
+.cards-container .card .left .categories li {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid black;
+  border-radius: 10px;
+  background: rgb(244, 238, 238);
+}
+.cards-container .card .left .categories li a {
+  padding: 0.3rem 0.6rem;
+  text-decoration: none;
+  color: black;
+}
+.cards-container .card .left .price {
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-align: center;
+  color: rgb(59, 176, 100);
+  margin-top: 10px;
+}
+.cards-container .card .right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cards-container .card .right img {
+  max-width: 300px;
+}
+
+/*# sourceMappingURL=style.css.map */

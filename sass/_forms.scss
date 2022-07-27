@@ -1,0 +1,53 @@
+form {
+  display: flex;
+  justify-content: center;
+  min-width: 100vw;
+
+  & > div {
+    display: flex;
+    // align-items: center;
+    flex-direction: column;
+    min-width: 30%;
+    max-width: 80%;
+    background: rgb(214, 206, 206);
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      margin: 5px 0;
+
+      label {
+        margin-bottom: 3px;
+      }
+
+      input,
+      select {
+        min-height: 30px;
+        text-align: center;
+      }
+
+      textarea {
+        min-height: 60px;
+        resize: vertical;
+      }
+
+      &:last-of-type {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button,
+        input {
+          min-width: 100px;
+          min-height: 35px;
+          cursor: pointer;
+          background: linear-gradient(45deg, rgba(58, 176, 99, 1) 0%, rgba(147, 203, 166, 1) 25%, rgba(186, 227, 200, 1) 50%, rgba(147, 203, 166, 1) 75%, rgba(58, 176, 99, 1) 100%);
+          border: none;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}

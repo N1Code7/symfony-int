@@ -44,8 +44,7 @@ class BookRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder("book")
             ->orderBy("book.id", "DESC")
-            ->setMaxResults(":number")
-            ->setParameter("number", "%$number%")
+            ->setMaxResults($number)
             ->getQuery()
             ->getResult();
     }
@@ -55,7 +54,7 @@ class BookRepository extends ServiceEntityRepository
         return $this->createQueryBuilder("book")
             ->leftJoin('book.categories', 'category')
             ->andWhere('category.id = :id')
-            ->setParameter('id', "%$id%")
+            ->setParameter('id', $id)
             ->orderBy("book.title", "DESC")
             ->getQuery()
             ->getResult();

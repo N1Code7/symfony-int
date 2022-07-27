@@ -1,0 +1,22 @@
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70px;
+  min-width: 100vw;
+  background: rgb(214, 205, 205);
+  margin-bottom: 30px;
+
+  .nav-links-container {
+    display: flex;
+    gap: 20px;
+
+    a {
+      text-decoration: none;
+      padding: 0.6rem;
+      background: $color1;
+      border-radius: 12px;
+      color: rgb(29, 29, 29);
+    }
+  }
+}

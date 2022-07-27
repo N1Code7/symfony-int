@@ -10,9 +10,10 @@
 
     <body>
         <nav>
-            <a href="{{path("app_home_displayNBooks", {number:20})}}">Home</a>
-            <a href="{{path("app_category_showAllCategories")}}">Toutes les catégories</a>
-        
+            <div class="nav-links-container">
+                <a href="{{path("app_home_displayNBooks", {number:20})}}">Home</a>
+                <a href="{{path("app_category_showAllCategories")}}">Toutes les catégories</a>
+            </div>
         </nav>
 
         {% block body %}{% endblock %}

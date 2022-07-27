@@ -10,21 +10,29 @@
 
       {% for book in books %}
         <div class="card">
-          <h3>Titre : {{book.title}}</h3>
-          <p>Prix : {{book.price}} €</p>
-          <p>Description : {{book.description}}</p>
-          <img src="{{book.imageUrl}}" alt="Image du livre {{book.title}}">
-          <p>Auteur : {{book.author.name}}</p>
-          {% if book.categories|length == 1 %}
-          <p>Catégorie : {% for category in book.categories %}<a href="{{path("app_category_showAllBooksOfOneCategory", {id:category.id})}}">{{category.name}}</a>{% endfor %}</p>
-          {% else %}
-            <ul>Catégories :
-          {% for category in book.categories %}
-            <li><a href="{{path("app_category_showAllBooksOfOneCategory", {id:category.id})}}">{{category.name}}</a></li>
-          {% endfor %}
+          <div class="left">
+            <h3>Titre : {{book.title}}</h3>
+            <p><span class="sub-title">Description :</span><br>{{book.description}}</p>
+            <p><span class="sub-title">Auteur(s) : {{book.author.name}}</p>
+            <div class="div">
+              {% if book.categories|length == 1 %}
+                <p<span class="sub-title">Catégorie(s) :</span><a href="{{path("app_category_showAllBooksOfOneCategory", {id:book.categories.0.id})}}">{{book.categories.0.name}}</a></p>
+              {% else %}
+                <span class="sub-title">Catégorie(s) :</span>
+                <ul class="categories">
+                {% for category in book.categories %}
+                  <li><a href="{{path("app_category_showAllBooksOfOneCategory", {id:category.id})}}">{{category.name}}</a></li>
+                {% endfor %}
+                </ul>
+              {% endif %}
+            <p class="price">Prix : {{book.price}} €</p>
+            </div>
+          
+          </div>
+          <div class="right">
+            <img src="{{book.imageUrl}}" alt="Image du livre {{book.title}}">
+          </div>
 
-            </ul>
-          {% endif %}
 
         </div>
       {% endfor %}
