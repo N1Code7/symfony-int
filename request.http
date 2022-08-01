@@ -1,0 +1,39 @@
+GET https://monapi.com/vetements (collection)
+
+###
+
+GET https://monapi.com/vetements?type=pantalon&sort_by=asc(prix) (collection)
+
+###
+GET https://monapi.com/vetements?type=pantalon&pantalon_id=4 (doucument)
+
+###
+POST https://monapi.com/vetements
+
+###
+DELETE https://monapi.com/vetements/4
+
+###
+PUT https://monapi.com/vetements/2
+
+###
+GET https://monapi.com/vetements?categorie=été&sort_by=asc(prix)
+
+###
+GET https://monapi.com/vetements?
+
+###
+PUT https://monapi.com/
+
+###
+DELETE https://monapi.com/vetements?user_id=
+
+###
+POST http://127.0.0.1:8000/api/authors/create
+Content-Type: application/json
+
+{
+    "name": "Test auteur",
+    "description": "Description de l'auteur",
+    "imageUrl": "http://img.com/img"
+}

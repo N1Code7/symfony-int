@@ -25,3 +25,34 @@ App\Entity\Book:
     author: "@author*"
     categories: ["@category*", "@category*"]
     publishingHouse: "@publishingHouse*"
+
+App\Entity\User:
+  user1:
+    email: superadmin@mail.com
+    roles: ["ROLE_SUPER_ADMIN"]
+    # password: password
+    password: \$2y\$13\$97XHwLIl6SZd0yhsUOEZUu6JPp9f51cszcgkrrs7E3JwE6Hit9J2G
+    imageUrl: <imageUrl()>
+    description: <text(50)>
+    firstname: <firstname()>
+    lastname: <lastname()>
+
+  user2:
+    email: admin@mail.com
+    roles: ["ROLE_ADMIN"]
+    # password: password
+    password: \$2y\$13\$97XHwLIl6SZd0yhsUOEZUu6JPp9f51cszcgkrrs7E3JwE6Hit9J2G
+    imageUrl: <imageUrl()>
+    description: <text(50)>
+    firstname: <firstname()>
+    lastname: <lastname()>
+
+  user3:
+    email: user@mail.com
+    roles: ["ROLE_USER"]
+    # password: password
+    password: \$2y\$13\$97XHwLIl6SZd0yhsUOEZUu6JPp9f51cszcgkrrs7E3JwE6Hit9J2G
+    imageUrl: <imageUrl()>
+    description: <text(50)>
+    firstname: <firstname()>
+    lastname: <lastname()>

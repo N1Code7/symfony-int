@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         {% block stylesheets %}
             <link rel="stylesheet" href="/style.css">
         {% endblock %} 
@@ -11,9 +12,26 @@
     <body>
         <nav>
             <div class="nav-links-container">
-                <a href="{{path("app_home_displayNBooks", {number:20})}}">Home</a>
-                <a href="{{path("app_category_showAllCategories")}}">Toutes les catégories</a>
+                <div class="links">
+                    <a href="{{path("app_home_displayNBooks", {number:20})}}">Home</a>
+                    <a href="{{path("app_category_showAllCategories")}}">Toutes les catégories</a>
+                </div>
+                
+                {% if app.user %}
+                    <div class="user-identifier">
+                        <p>Bonjour {{ app.user.firstname }}</p>
+                    </div>
+                    <div class="user-side">
+                        <a href="{{ path("app_basket_displayBasket") }}">Mon panier</a>
+                        <a href="{{ path("app_security_myProfile") }}">Mon profil</a>
+                        <a href="{{ path("app_security_logout") }}">Se déconnecter</a>
+                {% else %}
+                        <a href="{{ path("app_security_login") }}">Se connecter</a>
+                    
+                    </div>
+                {% endif %}
             </div>
+
         </nav>
 
         {% block body %}{% endblock %}

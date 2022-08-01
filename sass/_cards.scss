@@ -6,6 +6,7 @@
 
   .card {
     display: flex;
+    flex-direction: column;
     padding: 0.6rem 1.2rem;
     margin: 20px;
     background: rgb(189, 189, 185);
@@ -13,6 +14,16 @@
     min-height: 320px;
     border: 2px groove black;
     border-radius: 10px;
+
+    .up {
+      display: flex;
+    }
+
+    .down {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
     .left {
       display: flex;

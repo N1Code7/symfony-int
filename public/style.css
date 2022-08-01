@@ -5,7 +5,6 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Ibarra Real Nova", sans-serif;
 }
 
 html,
@@ -29,7 +28,13 @@ nav {
 }
 nav .nav-links-container {
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
+  min-width: 90%;
+}
+nav .nav-links-container .user-side i {
+  color: red;
+  width: 50px;
+  font-family: serif;
 }
 nav .nav-links-container a {
   text-decoration: none;
@@ -93,6 +98,7 @@ form > div > div:last-of-type input {
 }
 .cards-container .card {
   display: flex;
+  flex-direction: column;
   padding: 0.6rem 1.2rem;
   margin: 20px;
   background: rgb(189, 189, 185);
@@ -100,6 +106,14 @@ form > div > div:last-of-type input {
   min-height: 320px;
   border: 2px groove black;
   border-radius: 10px;
+}
+.cards-container .card .up {
+  display: flex;
+}
+.cards-container .card .down {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .cards-container .card .left {
   display: flex;
@@ -146,6 +160,44 @@ form > div > div:last-of-type input {
 }
 .cards-container .card .right img {
   max-width: 300px;
+}
+
+.basket-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px dashed black;
+  border-radius: 5px;
+  max-width: 60%;
+  margin: 0 auto;
+}
+.basket-item {
+  display: grid;
+  grid-template-columns: 1fr 70px 100px;
+  column-gap: 10px;
+  min-width: 100%;
+  border-bottom: 1px solid black;
+  padding: 1.2rem 0.6rem;
+}
+.basket-item:last-of-type {
+  border-bottom: none;
+}
+.basket-item p,
+.basket-item a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.basket .price,
+.basket a {
+  max-width: 100px;
+}
+.basket .total-price {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  min-width: 100vw;
+  padding: 1.2rem 2.4rem;
 }
 
 /*# sourceMappingURL=style.css.map */

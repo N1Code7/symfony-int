@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier{% endblock %}
+
+{% block body %}
+
+    {% if app.user.basket.books|length == 0 %}
+        <p>Votre panier est vide</p>
+    {% else %}
+        <div class="basket">
+            <div class="basket-content">
+            {% for book in app.user.basket.books %}
+                <div class="basket-item">
+                    <p class="title">{{ book.title }}</p>
+                    <p class="price">{{ book.price }} €</p>
+                    <a href="{{ path("app_basket_deleteBook", {id:book.id}) }}">Supprimer</a>
+                </div>
+            {% endfor %}
+            </div>
+
+            <div class="total-price">
+                <h2>Total : {{ app.user.basket.getTotal() }} €</h2>
+            </div>
+        </div>
+    
+    {% endif %}
+
+{% endblock %}

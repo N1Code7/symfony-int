@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Mon profile{% endblock %}
+
+
+{% block body %}
+  {% if app.user %}
+
+    {{ form(form) }}
+
+  {% endif %}
+{% endblock %}

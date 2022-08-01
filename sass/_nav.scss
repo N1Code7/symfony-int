@@ -9,7 +9,18 @@ nav {
 
   .nav-links-container {
     display: flex;
-    gap: 20px;
+    justify-content: space-between;
+    min-width: 90%;
+    // gap: 20px;
+
+    .user-side {
+      i {
+        // border: none;
+        color: red;
+        width: 50px;
+        font-family: serif;
+      }
+    }
 
     a {
       text-decoration: none;
